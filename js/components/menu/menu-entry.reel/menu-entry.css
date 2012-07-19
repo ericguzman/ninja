@@ -53,7 +53,7 @@ POSSIBILITY OF SUCH DAMAGE.
     opacity: 1;
 }
 
-.selected {
+.topMenuItem.selected {
     background-color: #7F7F7F;
 }
 
