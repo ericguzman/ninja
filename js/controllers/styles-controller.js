@@ -435,9 +435,8 @@ var stylesController = exports.StylesController = Montage.create(Component, {
 
             if(index > -1) {
                 sheet.deleteRule(index);
+                this.styleSheetModified(sheet);
             }
-
-            this.styleSheetModified(sheet);
 
             return index;
         }
@@ -703,6 +702,11 @@ var stylesController = exports.StylesController = Montage.create(Component, {
 
     getRuleIndex : {
         value : function(rule) {
+            if(!rule.parentStyleSheet) {
+                console.warn("StylesController::getRuleIndex - Found rule with no parent style sheet.")
+                return -1;
+            }
+
             var rules = nj.toArray(rule.parentStyleSheet.rules);
 
             return rules.indexOf(rule);
